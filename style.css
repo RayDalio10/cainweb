@@ -103,10 +103,10 @@ h1, h2, h3, .logo {
     align-items: center;
     position: sticky;
     top: 0;
-    background: var(--glass);
+    background: var(--secondary); /* Dark background for white logo */
     backdrop-filter: blur(15px);
     z-index: 1000;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar .container {
@@ -118,6 +118,18 @@ h1, h2, h3, .logo {
 
 .logo {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 55px;
+    width: auto;
+}
+
+.footer-logo img {
+    height: 50px;
+    width: auto;
 }
 
 .nav-links {
@@ -128,14 +140,14 @@ h1, h2, h3, .logo {
 
 .nav-links a:not(.btn) {
     text-decoration: none;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
     font-size: 0.95rem;
     transition: color 0.3s;
 }
 
 .nav-links a:not(.btn):hover {
-    color: var(--primary);
+    color: var(--white);
 }
 
 .menu-toggle {
@@ -150,7 +162,7 @@ h1, h2, h3, .logo {
 .menu-toggle span {
     width: 24px;
     height: 2px;
-    background: var(--text-main);
+    background: var(--white);
     transition: 0.3s;
 }
 
@@ -809,7 +821,7 @@ h1, h2, h3, .logo {
         top: 90px;
         left: 0;
         width: 100%;
-        background: var(--white);
+        background: var(--secondary);
         flex-direction: column;
         padding: 40px;
         box-shadow: var(--shadow-bold);
