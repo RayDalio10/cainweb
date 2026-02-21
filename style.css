@@ -1,10 +1,10 @@
 /* ===== GLOBAL STYLES ===== */
 :root {
-    --primary: #1a7f4b;
-    --primary-dark: #125e36;
-    --primary-light: #e8f5ee;
-    --secondary: #e8a020;
-    --secondary-dark: #c48616;
+    --primary: #C41230;
+    --primary-dark: #9A0E26;
+    --primary-light: #FFF1F2;
+    --secondary: #1A1A1A;
+    --secondary-dark: #000000;
     --text-main: #1d1d1f;
     --text-muted: #515154;
     --bg-off-white: #fbfbfd;
@@ -78,12 +78,12 @@ h1, h2, h3, .logo {
 .btn-primary:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(26, 127, 75, 0.3);
+    box-shadow: 0 10px 30px rgba(196, 18, 48, 0.3);
 }
 
 .btn-secondary {
     background: var(--secondary);
-    color: var(--text-main);
+    color: var(--white);
 }
 
 .btn-secondary:hover {
@@ -210,16 +210,77 @@ h1, h2, h3, .logo {
     color: var(--text-muted);
 }
 
-.image-stack {
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-bold);
+}
+
+.carousel-track {
+    width: 100%;
+    height: 100%;
     position: relative;
 }
 
-.image-stack img {
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-bold);
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s var(--transition);
+    z-index: 1;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    height: 500px;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    background: var(--glass);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary);
+    backdrop-filter: blur(10px);
+}
+
+.carousel-nav {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background: var(--white);
+    transform: scale(1.2);
 }
 
 .floating-stat {
@@ -265,14 +326,14 @@ h1, h2, h3, .logo {
     font-size: 3rem;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
-    color: var(--secondary);
+    color: var(--white);
     display: inline-block;
 }
 
 .stat-item span {
     font-size: 2rem;
     font-weight: 800;
-    color: var(--secondary);
+    color: var(--white);
 }
 
 .stat-item p {
@@ -317,7 +378,7 @@ h1, h2, h3, .logo {
 }
 
 .founder-quote {
-    border-left: 4px solid var(--secondary);
+    border-left: 4px solid var(--primary);
     padding-left: 32px;
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
@@ -408,8 +469,8 @@ h1, h2, h3, .logo {
 }
 
 .bento-item.accent {
-    background: var(--secondary);
-    color: var(--text-main);
+    background: var(--primary);
+    color: var(--white);
 }
 
 .tag {
@@ -420,6 +481,87 @@ h1, h2, h3, .logo {
     font-size: 0.75rem;
     font-weight: 700;
     margin-top: 20px;
+}
+
+/* ===== NEWS SECTION ===== */
+.news-section {
+    padding: 120px 0;
+    background-color: var(--white);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+.news-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.4s var(--transition);
+    border: 1px solid var(--border);
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-bold);
+}
+
+.news-image {
+    height: 240px;
+    overflow: hidden;
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--transition);
+}
+
+.news-card:hover .news-image img {
+    transform: scale(1.05);
+}
+
+.news-content {
+    padding: 32px;
+}
+
+.news-date {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.news-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    font-family: 'Playfair Display', serif;
+}
+
+.news-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+.read-more {
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.read-more:hover {
+    color: var(--secondary-dark);
 }
 
 /* ===== DONATION SECTION ===== */
@@ -467,7 +609,7 @@ h1, h2, h3, .logo {
 
 .progress-fill {
     height: 100%;
-    background: var(--secondary);
+    background: var(--white);
     border-radius: 10px;
 }
 
