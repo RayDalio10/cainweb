@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      UserRole @default(STUDENT)
+  profile   Profile?
+  applications Application[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
+  nationality     String
+  studyLevel      StudyLevel
+  fieldOfStudy    String
+  gpa             Float?
+  gpaScale        Float?   @default(5.0)
+  targetCountries String[]
+}
+
+model Scholarship {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  provider        String
+  amount          String?
+  deadline        DateTime?
+  eligibility     String?
+  targetAfrican   Boolean  @default(true)
+  matchScores     MatchScore[]
+}
+
+model Application {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  scholarshipId   String
+  status          AppStatus @default(NOT_STARTED)
+  essays          Essay[]
+  deadline        DateTime?
+}
+
+model Essay {
+  id              String   @id @default(cuid())
+  applicationId   String
+  application     Application @relation(fields: [applicationId], references: [id])
+  title           String
+  content         String
+  feedback        String?
+}
+
+model MatchScore {
+  id              String   @id @default(cuid())
+  scholarshipId   String
+  scholarship     Scholarship @relation(fields: [scholarshipId], references: [id])
+  userId          String
+  score           Float
+}
+
+enum UserRole {
+  STUDENT
+  ADMIN
+  CONSULTANT
+}
+
+enum StudyLevel {
+  UNDERGRADUATE
+  MASTERS
+  PHD
+}
+
+enum AppStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+}

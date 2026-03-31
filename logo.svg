@@ -1,9 +1,0 @@
-<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-  <!-- Icon: Red Circle with White C -->
-  <circle cx="25" cy="30" r="22" fill="#C41230" />
-  <path d="M33 30C33 34.4183 29.4183 38 25 38C20.5817 38 17 34.4183 17 30C17 25.5817 20.5817 22 25 22C27.5 22 29.5 23 31 24.5" stroke="white" stroke-width="4" stroke-linecap="round" fill="none" />
-
-  <!-- Text -->
-  <text x="60" y="32" font-family="Inter, sans-serif" font-weight="800" font-size="24" fill="#1A1A1A">CAIN</text>
-  <text x="60" y="48" font-family="Inter, sans-serif" font-weight="600" font-size="8" letter-spacing="1" fill="#C41230">FOUNDATION</text>
-</svg>
